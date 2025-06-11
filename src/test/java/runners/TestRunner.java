@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features/datapiker.feature"},
         glue = {"stepdefinitions"},
         plugin = {"pretty", "html:build/serenity"},
-        tags = "@id1"
+        //tags = "@id1"
 )
 public class TestRunner {
 
