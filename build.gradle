@@ -1,6 +1,4 @@
 apply plugin: 'java-library'
-apply plugin: 'net.serenity-bdd.aggregator'
-
 
 repositories {
     mavenLocal()
@@ -14,29 +12,30 @@ buildscript {
         mavenCentral()
         jcenter()
     }
-    dependencies {
-
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.80")
-    }
 }
 
+
+ext {
+    serenityVersion = '3.6.12'
+    cucumberVersion = '7.14.0' // Compatible con Serenity 3.9.x
+    junitVersion = '4.13.2'
+    slf4jVersion = '2.0.9'
+    assertJVersion = '3.24.2'
+}
 
 dependencies {
-
-    implementation 'net.serenity-bdd:serenity-junit:2.0.80'
-    implementation 'net.serenity-bdd:serenity-cucumber:1.9.45'
-    implementation 'net.serenity-bdd:serenity-core:2.0.80'
-    implementation 'org.slf4j:slf4j-simple:1.7.7'
-    implementation 'com.google.guava:guava:23.0'
-    implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
-    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
-
-
-
-
-}
-
-
+    // Serenity Core y Cucumber
+    testImplementation("org.slf4j:slf4j-simple:2.1.0-alpha1")
+    implementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-junit:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-ensure:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"}
 test {
 
     ignoreFailures = true
